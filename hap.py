@@ -9,6 +9,15 @@ def save_html(html, filepath):
     with open(filepath, 'w', encoding='utf-8') as file:
         file.write(html)
 
+def copytree(src, dst, symlinks=False, ignore=None):
+    for item in os.listdir(src):
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if os.path.isdir(s):
+            shutil.copytree(s, d, symlinks, ignore)
+        else:
+            shutil.copy2(s, d)
+
 def generate_site(directory):
     env = Environment(loader=FileSystemLoader(os.path.join(directory, 'templates')))
     template = env.get_template('base.html')
@@ -47,7 +56,7 @@ def generate_site(directory):
                             if os.path.exists(image_directory):
                                 # Define the output directory for images and copy images
                                 output_image_directory = output_filepath.replace('.html', '_files')
-                                shutil.copytree(image_directory, output_image_directory)
+                                copytree(image_directory, output_image_directory)
 
                             # Render individual markdown files using the appropriate template
                             template_name = f"{subdirectory.lower()}_template.html"
