@@ -53,7 +53,6 @@ output
 ```
 
 4. Define styles in output folder. I have include a sample styles.css
-```
 
 ## TODO
 
