@@ -26,6 +26,8 @@ input_directory
     ├── projects_template.html
 ```
 
+I have included a sample content folder and sample templates folder.
+
 2. Run the script
 
 ```
@@ -50,7 +52,7 @@ output
 ├── projects.html
 ```
 
-4. Define styles in output folder
+4. Define styles in output folder. I have include a sample styles.css
 
 **Sample base.html:**
 

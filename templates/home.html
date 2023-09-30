@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div id="course-list">
+        {% if nav_links is defined %}
+            {% for content_type, links in nav_links.items() %}
+                <section>
+                    <h1>{{ content_type }}</h1>
+                    <ul>
+                    {% for name, link in links %}
+                        <li><a href="{{ link }}">{{ ' '.join(name.split('-')) }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </section>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
