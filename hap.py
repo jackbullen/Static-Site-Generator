@@ -46,7 +46,7 @@ def generate_site(directory):
                             content_md = file.read()
                             
                             # get html from md
-                            content_html = markdown2.markdown(content_md)
+                            content_html = markdown2.markdown(content_md, extras=["tables", "fenced-code-blocks"])
                             
                             # Define where the generated HTML file will be saved
                             relative_path = os.path.relpath(subdirectory_path, content_directory)
@@ -74,7 +74,8 @@ def generate_site(directory):
     os.makedirs(output_directory, exist_ok=True)
     
     # Generate the homepage with links to each content type
-    homepage_content = template.render(title='Home', nav_links=homepage_links)
+    home_template = env.get_template('home.html')
+    homepage_content = home_template.render(title='Home', nav_links=homepage_links)
     with open(os.path.join(output_directory, 'index.html'), 'w', encoding='utf-8') as file:
         file.write(homepage_content)
         
